@@ -1,0 +1,41 @@
+---
+title: "SUDS/ARYSE Data Exploration"
+author: "Asad Sheikh"
+date: "11/22/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(sf)
+library(leaflet)
+library(mapview)
+```
+
+
+We first read in the Pittsburgh Police Arrest Data and examine the dataset.
+```{r}
+df = read.csv("PGH Police Arrest Data.csv")
+df = df[complete.cases(df),]
+head(df)
+```
+
+
+```{r}
+df %>%
+  group_by(INCIDENTNEIGHBORHOOD) %>%
+  count(INCIDENTNEIGHBORHOOD, sort = TRUE)
+```
+
+
+```{r}
+barplot(sort(prop.table(table(df$INCIDENTNEIGHBORHOOD)), decreasing = TRUE),las=2,cex.names=0.5, horiz = FALSE)
+```
+
+
+```{r}
+
+```
+
