@@ -42,3 +42,4 @@ hist(policedata$AGE, xlim = c(0,90), breaks = 150, col = "slategrey",
 
 
 
+
