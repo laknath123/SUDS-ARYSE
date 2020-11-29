@@ -1,0 +1,44 @@
+---
+title: "data exploration"
+author: "Caitlyn Clendenin"
+date: "11/29/2020"
+output: html_document
+---
+
+## Initial Police Data Exploration
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+policedata <- read.csv("~/Downloads/policearrest.csv")
+```
+
+For my own purposes, the list of variable names and their meaning are below:
+- CCR : incident number
+- AGE : age of suspect
+- GENDER : gender of suspect
+- RACE : race of suspect
+- ARREST_DATE : date of arrest
+- ARREST_TIME : time of arrest
+- ARRESTLOCATION : location of arrest 
+- OFFENSES : all offenses listed for the incident 
+- INCIDENTLOCATION : incident location
+- NEIGHBORHOOD : neighborhood 
+- ZONE : police zone where incident occurred
+- X : The geocoded X coordinate of the incident location
+- Y : The geocoded Y coordinate of the incident location
+
+```{r}
+head(policedata)
+summary(policedata)
+```
+
+## Histogram of Age Groups 
+```{r}
+hist(policedata$AGE, xlim = c(0,90), breaks = 150, col = "slateblue2", 
+     xlab = "Age", main = "Histogram of Arrests")
+```
+
+
+
+
+
