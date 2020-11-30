@@ -2,41 +2,88 @@
 title: "data exploration"
 author: "Caitlyn Clendenin"
 date: "11/29/2020"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ## Initial Police Data Exploration
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-policedata <- read.csv("~/Downloads/policearrest.csv")
+library(ggplot2)
+policedata <- data.frame(read.csv("~/Downloads/policearrest.csv"))
+trafficsigns <- data.frame(read.csv("~/Downloads/pgh traffic signs.csv"))
 ```
 
 For my own purposes, the list of variable names and their meaning are below:
-- CCR : incident number
-- AGE : age of suspect
-- GENDER : gender of suspect
-- RACE : race of suspect
-- ARREST_DATE : date of arrest
-- ARREST_TIME : time of arrest
-- ARRESTLOCATION : location of arrest 
-- OFFENSES : all offenses listed for the incident 
-- INCIDENTLOCATION : incident location
-- NEIGHBORHOOD : neighborhood 
-- ZONE : police zone where incident occurred
-- X : The geocoded X coordinate of the incident location
-- Y : The geocoded Y coordinate of the incident location
+- `CCR` : incident number
+- `AGE` : age of suspect
+- `GENDER` : gender of suspect
+- `RACE` : race of suspect
+- `ARREST_DATE` : date of arrest
+- `ARREST_TIME` : time of arrest
+- `ARRESTLOCATION` : location of arrest 
+- `OFFENSES` : all offenses listed for the incident 
+- `INCIDENTLOCATION` : incident location
+- `NEIGHBORHOOD` : neighborhood 
+- `ZONE` : police zone where incident occurred
+- `X` : The geocoded X coordinate of the incident location
+- `Y` : The geocoded Y coordinate of the incident location
 
+### Summary Statistics 
 ```{r}
 head(policedata)
 summary(policedata)
 ```
+One interesting takeaway is that the neighborhood with the
+highest number of incidents reported is the CentralBusiness District. This makes 
+sense because it is one of the most urban neighborhoods, so there is a high crime
+rate. This could be a good option to intially rule out because in terms of 
+safety, it is likely not the best. 
 
-## Histogram of Age Groups 
+
+### Histogram of Age Groups 
 ```{r}
 hist(policedata$AGE, xlim = c(0,90), breaks = 150, col = "slategrey", 
      xlab = "Age", main = "Histogram of Arrests")
 ```
+
+### Tables of Categorical Variables
+First, a relative frequency table of gender which shows that the majority of 
+suspects were male.
+```{r}
+round(table(policedata$GENDER)/length(policedata$GENDER),3)
+```
+Next, a relative frequency table of race which shows that the groups with 
+the largest proportion of arrests were Black (60.6%) and White (36.2). The
+populations in Pittsburgh are 66.85% White, 23.21% Black/African American, 5.71%
+Asian, and the rest of the population either falls into two or more race 
+categories or Native American. 
+```{r}
+round(table(policedata$RACE)/length(policedata$GENDER),4)
+```
+
+I noticed that the dataset with traffic signs that I found also uses police 
+zones and public works divisions, so this could provide an identification method 
+for comparing datasets side by side. I am going to see which police zones and 
+public works divisions have the highest number of traffic signs. This may be an
+environmental factor that contributes to safety
+
+## Initial Traffic Signs Exploration
+```{r}
+head(trafficsigns)
+summary(trafficsigns)
+```
+
+Tabling police zone/incident zone and public works division in both datasets. 
+```{r}
+
+```
+
+
+
+
 
 
 
