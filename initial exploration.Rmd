@@ -1,0 +1,22 @@
+---
+dtitle: "ARYSE exploration"
+author: "Caitlyn Clendenin"
+date: "11/25/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+arrest.data <- read.csv("~/Downloads/policearrest.csv")
+```
+
+
+```{r}
+#head(arrest.data)
+#table(arrest.data$OFFENSES) 
+
+```
+The most common arrest offense is posession of a controlled substance with 654 
+occurrences. 
+
+
